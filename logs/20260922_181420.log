@@ -1,0 +1,38 @@
+2026-09-22 18:14:21,189 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-22 18:14:21,749 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 18:14:21,750 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-22 18:14:25,321 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:14:25,647 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:14:25,648 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:26,097 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:26,098 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:14:26,586 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:14:26,586 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:14:26,936 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:14:26,936 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/zero
+2026-09-22 18:14:27,334 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/zero
+2026-09-22 18:14:27,345 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:27,678 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:27,678 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/six
+2026-09-22 18:14:28,031 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/six
+2026-09-22 18:14:28,031 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:28,318 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:14:28,318 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/five
+2026-09-22 18:14:28,685 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/five
+2026-09-22 18:14:28,685 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/seven
+2026-09-22 18:14:29,067 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/seven
+2026-09-22 18:14:29,067 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:14:29,467 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:14:29,467 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/lable_sim0
+2026-09-22 18:14:29,771 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/lable_sim0
+2026-09-22 18:14:37,784 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/videocall_end_call
+2026-09-22 18:15:08,439 - autotest - INFO - 读取sms_data路径：D:\Script\stress\app_ui_dmoe-master\data\sms_data.json
+2026-09-22 18:15:09,014 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 18:15:10,700 - autotest - INFO - 点击元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 18:15:10,701 - autotest - INFO - 等待元素: xpath://android.widget.ScrollView
+2026-09-22 18:15:11,726 - autotest - INFO - 输入内容: 18910868579
+2026-09-22 18:15:11,726 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/compose_message_text
+2026-09-22 18:15:12,280 - autotest - INFO - 输入内容: test sms from uia2 pom
+2026-09-22 18:15:12,281 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/send_icon
+2026-09-22 18:15:12,939 - autotest - INFO - 点击元素: resourceId:com.android.messaging:id/send_icon
+2026-09-22 18:15:19,974 - autotest - INFO - 🔌 驱动释放完成

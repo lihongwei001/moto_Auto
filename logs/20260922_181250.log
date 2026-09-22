@@ -1,0 +1,27 @@
+2026-09-22 18:12:51,521 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-22 18:12:52,134 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 18:12:52,135 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-22 18:12:55,708 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:12:56,034 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:12:56,035 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:56,386 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:56,387 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:12:56,843 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:12:56,844 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:12:57,203 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-22 18:12:57,203 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/zero
+2026-09-22 18:12:57,608 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/zero
+2026-09-22 18:12:57,609 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:57,917 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:57,918 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/six
+2026-09-22 18:12:58,216 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/six
+2026-09-22 18:12:58,217 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:58,550 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-22 18:12:58,550 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/five
+2026-09-22 18:12:58,887 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/five
+2026-09-22 18:12:58,887 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/seven
+2026-09-22 18:12:59,257 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/seven
+2026-09-22 18:12:59,258 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:12:59,608 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-22 18:12:59,609 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/lable_sim0
+2026-09-22 18:12:59,941 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/lable_sim0

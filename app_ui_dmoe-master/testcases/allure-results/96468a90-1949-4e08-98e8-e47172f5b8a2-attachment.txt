@@ -1,0 +1,4 @@
+2026-09-22 17:19:45,906 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 17:19:45,908 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-22 17:19:46,520 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 17:19:54,449 - autotest - INFO - 🔌 驱动释放完成

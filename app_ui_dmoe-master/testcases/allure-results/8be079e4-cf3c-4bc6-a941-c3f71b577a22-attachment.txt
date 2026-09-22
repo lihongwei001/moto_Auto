@@ -1,0 +1,11 @@
+INFO     autotest:driver_util.py:12 ✅ 设备 N4AC220456 连接成功
+INFO     autotest:conftest.py:31 读取sms_data路径：D:\Script\stress\app_ui_dmoe-master\data\sms_data.json
+INFO     autotest:base_page.py:28 等待元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+INFO     autotest:base_page.py:44 点击元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+INFO     autotest:base_page.py:28 等待元素: xpath://android.widget.ScrollView
+INFO     autotest:base_page.py:53 输入内容: 18910868579
+INFO     autotest:base_page.py:28 等待元素: resourceId:com.android.messaging:id/compose_message_text
+INFO     autotest:base_page.py:53 输入内容: test sms from uia2 pom
+INFO     autotest:base_page.py:28 等待元素: resourceId:com.android.messaging:id/send_icon
+INFO     autotest:base_page.py:44 点击元素: resourceId:com.android.messaging:id/send_icon
+INFO     autotest:driver_util.py:34 🔌 驱动释放完成

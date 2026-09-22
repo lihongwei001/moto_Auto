@@ -1,0 +1,6 @@
+2026-09-22 17:56:16,280 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 17:56:16,281 - autotest - INFO - 读取sms_data路径：D:\Script\stress\app_ui_dmoe-master\data\sms_data.json
+2026-09-22 17:56:16,762 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 17:56:18,373 - autotest - INFO - 点击元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 17:56:18,373 - autotest - INFO - 等待元素: xpath://android.widget.ScrollView
+2026-09-22 17:56:25,032 - autotest - INFO - 🔌 驱动释放完成

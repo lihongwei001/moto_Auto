@@ -1,0 +1,5 @@
+2026-09-22 17:26:52,883 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-22 17:26:53,144 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 17:26:53,145 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-22 17:26:56,757 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 17:27:03,866 - autotest - INFO - 🔌 驱动释放完成

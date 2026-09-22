@@ -1,0 +1,3 @@
+2026-09-22 17:03:54,516 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 17:03:55,105 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-22 17:04:01,436 - autotest - INFO - 🔌 驱动释放完成

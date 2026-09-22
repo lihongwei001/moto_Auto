@@ -1,0 +1,2 @@
+INFO     autotest:driver_util.py:12 ✅ 设备 N4AC220456 连接成功
+INFO     autotest:driver_util.py:34 🔌 驱动释放完成

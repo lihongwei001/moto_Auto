@@ -1,0 +1,12 @@
+2026-09-22 18:09:40,298 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-22 18:09:40,644 - autotest - INFO - ✅ 设备 N4AC220456 连接成功
+2026-09-22 18:09:40,645 - autotest - INFO - 读取sms_data路径：D:\Script\stress\app_ui_dmoe-master\data\sms_data.json
+2026-09-22 18:09:41,208 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 18:09:42,807 - autotest - INFO - 点击元素: resourceId:com.android.messaging:id/start_new_conversation_button_activity
+2026-09-22 18:09:42,808 - autotest - INFO - 等待元素: xpath://android.widget.ScrollView
+2026-09-22 18:09:43,871 - autotest - INFO - 输入内容: 18910868579
+2026-09-22 18:09:43,872 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/compose_message_text
+2026-09-22 18:09:44,760 - autotest - INFO - 输入内容: test sms from uia2 pom
+2026-09-22 18:09:44,770 - autotest - INFO - 等待元素: resourceId:com.android.messaging:id/send_icon
+2026-09-22 18:09:45,174 - autotest - INFO - 点击元素: resourceId:com.android.messaging:id/send_icon
+2026-09-22 18:09:51,729 - autotest - INFO - 🔌 驱动释放完成
