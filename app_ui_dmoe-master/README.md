@@ -17,3 +17,4 @@ POM_AutoTest/
 ├── conftest.py               # pytest钩子：全局fixture（驱动初始化/销毁，allure截图钩子）
 ├── pytest.ini                # pytest配置文件
 └── requirements.txt          # 依赖清单
+https://uiauto2.devsleep.com/ # UIAuto2官网UI查看工具
