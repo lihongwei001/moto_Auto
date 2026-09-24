@@ -1,0 +1,9 @@
+2026-09-23 16:14:51,178 - autotest - INFO - 当前使用设备serial: 
+2026-09-23 16:14:51,354 - autotest - INFO - ✅ 设备  连接成功
+2026-09-23 16:14:51,355 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-23 16:14:51,357 - autotest - INFO - 等待元素: textContains:视频通话
+2026-09-23 16:14:51,717 - autotest - INFO - 点击元素: textContains:视频通话
+2026-09-23 16:14:51,718 - autotest - INFO - 【判断元素存在】selector=resourceId:com.android.dialer:id/videocall_end_call, timeout=3
+2026-09-23 16:14:51,899 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/videocall_end_call
+2026-09-23 16:14:52,208 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/videocall_end_call
+2026-09-23 16:14:58,205 - autotest - INFO - 🔌 驱动释放完成

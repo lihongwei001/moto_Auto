@@ -1,0 +1,10 @@
+2026-09-23 16:14:08,323 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-23 16:14:08,464 - autotest - INFO - 当前使用设备serial: 
+2026-09-23 16:14:08,672 - autotest - INFO - ✅ 设备  连接成功
+2026-09-23 16:14:08,674 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-23 16:14:08,680 - autotest - INFO - 等待元素: textContains:视频通话
+2026-09-23 16:14:09,084 - autotest - INFO - 点击元素: textContains:视频通话
+2026-09-23 16:14:09,085 - autotest - INFO - 【判断元素存在】selector=resourceId:com.android.dialer:id/videocall_end_call, timeout=3
+2026-09-23 16:14:09,196 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/videocall_end_call
+2026-09-23 16:14:09,496 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/videocall_end_call
+2026-09-23 16:14:14,948 - autotest - INFO - 🔌 驱动释放完成

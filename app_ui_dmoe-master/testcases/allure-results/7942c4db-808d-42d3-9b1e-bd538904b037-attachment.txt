@@ -1,0 +1,1 @@
+INFO     autotest:conftest.py:26 当前使用设备serial:

@@ -1,0 +1,27 @@
+INFO     autotest:conftest.py:26 当前使用设备serial: 
+INFO     autotest:driver_util.py:12 ✅ 设备  连接成功
+INFO     autotest:conftest.py:41 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/one
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/one
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/nine
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/nine
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/one
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/one
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/zero
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/zero
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/six
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/six
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/eight
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/five
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/five
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/seven
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/seven
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/nine
+INFO     autotest:base_page.py:68 点击元素: resourceId:com.android.dialer:id/nine
+INFO     autotest:base_page.py:52 等待元素: resourceId:com.android.dialer:id/lable_sim1
+INFO     autotest:driver_util.py:34 🔌 驱动释放完成

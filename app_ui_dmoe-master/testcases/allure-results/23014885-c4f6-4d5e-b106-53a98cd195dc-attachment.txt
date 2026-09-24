@@ -1,0 +1,32 @@
+2026-09-23 16:35:34,190 - autotest - INFO - 当前使用设备serial: 
+2026-09-23 16:35:34,509 - autotest - INFO - ✅ 设备  连接成功
+2026-09-23 16:35:34,510 - autotest - INFO - 读取call_data路径：D:\Script\stress\app_ui_dmoe-master\data\call_data.json
+2026-09-23 16:35:40,069 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-23 16:35:40,448 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-23 16:35:40,448 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:40,902 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:40,914 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-23 16:35:41,347 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-23 16:35:41,347 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/one
+2026-09-23 16:35:41,802 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/one
+2026-09-23 16:35:41,802 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/zero
+2026-09-23 16:35:42,233 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/zero
+2026-09-23 16:35:42,233 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:42,566 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:42,566 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/six
+2026-09-23 16:35:42,955 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/six
+2026-09-23 16:35:42,955 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:43,355 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/eight
+2026-09-23 16:35:43,355 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/five
+2026-09-23 16:35:43,710 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/five
+2026-09-23 16:35:43,711 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/seven
+2026-09-23 16:35:44,132 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/seven
+2026-09-23 16:35:44,133 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/nine
+2026-09-23 16:35:44,509 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/nine
+2026-09-23 16:35:44,510 - autotest - INFO - 等待元素: resourceId:com.android.dialer:id/sim_card_0
+2026-09-23 16:35:44,867 - autotest - INFO - 点击元素: resourceId:com.android.dialer:id/sim_card_0
+2026-09-23 16:35:52,873 - autotest - INFO - 等待元素: textContains:保持
+2026-09-23 16:35:53,227 - autotest - INFO - 点击元素: textContains:保持
+2026-09-23 16:35:53,228 - autotest - INFO - 等待元素: xpath:(//android.widget.RelativeLayout)[2]
+2026-09-23 16:35:53,496 - autotest - INFO - 点击元素: xpath:(//android.widget.RelativeLayout)[2]
+2026-09-23 16:36:01,004 - autotest - INFO - 🔌 驱动释放完成

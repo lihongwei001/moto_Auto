@@ -8,14 +8,32 @@ from common.driver_util import DriverUtil
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 logger.info(f"项目根目录 BASE_DIR = {BASE_DIR}")
 
-DEVICE_SERIAL = "N4AC220456"
 
-# ========== 缺失的driver fixture ==========
+# 增加自定义命令行参数 --serial
+def pytest_addoption(parser):
+    parser.addoption(
+        "--serial",
+        action="store",
+        default="",
+        help="adb设备序列号，adb devices查看"
+    )
+
+
+# fixture 获取命令行传入的serial
 @pytest.fixture(scope="session")
-def driver():
-    dr = DriverUtil.init_driver(DEVICE_SERIAL)
+def device_serial(request):
+    serial = request.config.getoption("--serial")
+    logger.info(f"当前使用设备serial: {serial}")
+    return serial
+
+
+# ========== driver fixture 改成依赖device_serial，不再硬编码 ==========
+@pytest.fixture(scope="session")
+def driver(device_serial):
+    dr = DriverUtil.init_driver(device_serial)
     yield dr
     DriverUtil.close_driver()
+
 
 @pytest.fixture(scope="session")
 def call_data():
@@ -25,6 +43,7 @@ def call_data():
     with open(json_full_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+
 @pytest.fixture(scope="session")
 def sms_data():
     json_full_path = os.path.join(BASE_DIR, "data", "sms_data.json")
@@ -33,6 +52,7 @@ def sms_data():
     with open(json_full_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+
 # 失败自动截图钩子
 @pytest.fixture(autouse=True)
 def failure_screenshot(request, driver):
@@ -40,6 +60,7 @@ def failure_screenshot(request, driver):
     if request.node.rep_call.failed:
         import allure
         allure.attach(driver.screenshot(), name="fail_screenshot", attachment_type=allure.attachment_type.PNG)
+
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):

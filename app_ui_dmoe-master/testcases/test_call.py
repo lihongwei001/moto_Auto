@@ -13,5 +13,19 @@ def test_make_call(driver, call_data):
         call_page.make_call()
     with allure.step("等待通话"):
         driver.sleep(data["wait_seconds"])
+    # with allure.step("接听来电"):
+    #     call_page.accept_incoming_call()
+    # with allure.step("拒接来电"):
+    #     call_page.disaccept_incoming_call()
+    # with allure.step("打开呼叫保持"):
+    #     call_page.hold_call()
+    # with allure.step("升级为视频"):
+    #     call_page.switch_to_videoCall()
+    # with allure.step("打开静音"):
+    #     call_page.mute()
+    # with allure.step("添加通话"):
+    #     call_page.add_call()
+    # with allure.step("打开扬声器"):
+    #     call_page.call_speaker()
     with allure.step("挂断电话"):
         call_page.hang_up()
