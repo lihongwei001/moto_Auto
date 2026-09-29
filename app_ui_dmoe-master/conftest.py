@@ -52,6 +52,14 @@ def sms_data():
     with open(json_full_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+@pytest.fixture(scope="session")
+def pin1_data():
+    json_full_path = os.path.join(BASE_DIR, "data", "Pin1_data.json")
+    logger.info(f"读取Pin1_data路径：{json_full_path}")
+    assert os.path.exists(json_full_path), f"找不到文件: {json_full_path}"
+    with open(json_full_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
 
 # 失败自动截图钩子
 @pytest.fixture(autouse=True)
