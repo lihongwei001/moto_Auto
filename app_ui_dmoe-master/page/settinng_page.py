@@ -1,7 +1,7 @@
 import time
 from common.base_page import BasePage
 from uiautomator2.exceptions import UiObjectNotFoundError
-import logger
+# import logger
 
 class SettingPage(BasePage):
     #元素定位
