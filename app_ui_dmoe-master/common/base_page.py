@@ -33,18 +33,11 @@ class BasePage:
         """从屏幕上半部分往下滑"""
         w, h = self.driver.window_size()
         self.driver.swipe(w * 0.5, h * 0.7, w * 0.5, h * 0.3, steps=steps)
-    #
-    # # 封装：循环向上滑动，直到找到目标元素（核心封装）
-    # def swipe_up_find_element(self, locator, max_times=5):
-    #     for _ in range(max_times):
-    #         try:
-    #             ele = self.driver(*locator)
-    #             if ele.wait(timeout=1):
-    #                 return ele
-    #         except:
-    #             self.swipe_up()
-    #             time.sleep(1)
-    #     raise Exception("滑动多次未找到元素")
+
+    def swipe_down(self, steps=40):
+        """从屏幕下半部分往上滑"""
+        w, h = self.driver.window_size()
+        self.driver.swipe(w * 0.5, h * 0.3, w * 0.5, h * 0.7, steps=steps)
 
     def is_element_exist(self, selector, timeout=3):
         """

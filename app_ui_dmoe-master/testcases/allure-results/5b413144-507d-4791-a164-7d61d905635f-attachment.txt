@@ -1,0 +1,3 @@
+2026-09-29 16:23:29,935 - autotest - INFO - 当前使用设备serial: 
+2026-09-29 16:23:30,245 - autotest - INFO - ✅ 设备  连接成功
+2026-09-29 16:23:30,246 - autotest - INFO - 读取Pin1_data路径：D:\Script\stress\app_ui_dmoe-master\data\Pin1_data.json

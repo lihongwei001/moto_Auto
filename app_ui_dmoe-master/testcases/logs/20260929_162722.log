@@ -1,0 +1,4 @@
+2026-09-29 16:27:23,134 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-29 16:27:23,165 - autotest - INFO - 当前使用设备serial: 
+2026-09-29 16:27:23,863 - autotest - INFO - ✅ 设备  连接成功
+2026-09-29 16:27:23,863 - autotest - INFO - 读取Pin1_data路径：D:\Script\stress\app_ui_dmoe-master\data\Pin1_data.json

@@ -1,0 +1,8 @@
+2026-09-29 16:05:25,325 - autotest - INFO - 项目根目录 BASE_DIR = D:\Script\stress\app_ui_dmoe-master
+2026-09-29 16:05:25,367 - autotest - INFO - 当前使用设备serial: 
+2026-09-29 16:05:25,684 - autotest - INFO - ✅ 设备  连接成功
+2026-09-29 16:05:28,238 - autotest - INFO - 等待元素: textContains:安全与密码
+2026-09-29 16:05:29,630 - autotest - INFO - 点击元素: textContains:安全与密码
+2026-09-29 16:05:29,631 - autotest - INFO - 等待元素: textContains:更多安全设置
+2026-09-29 16:05:43,255 - autotest - INFO - 点击元素: textContains:更多安全设置
+2026-09-29 16:05:45,260 - autotest - INFO - 等待元素: textContains:保护 SIM 卡

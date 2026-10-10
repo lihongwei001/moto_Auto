@@ -1,0 +1,13 @@
+2026-09-29 15:56:43,964 - autotest - INFO - 当前使用设备serial: 
+2026-09-29 15:56:44,259 - autotest - INFO - ✅ 设备  连接成功
+2026-09-29 15:56:44,259 - autotest - INFO - 读取Pin1_data路径：D:\Script\stress\app_ui_dmoe-master\data\Pin1_data.json
+2026-09-29 15:56:46,892 - autotest - INFO - 等待元素: textContains:安全与密码
+2026-09-29 15:56:47,563 - autotest - INFO - 点击元素: textContains:安全与密码
+2026-09-29 15:56:47,563 - autotest - INFO - 等待元素: textContains:更多安全设置
+2026-09-29 15:56:48,241 - autotest - INFO - 点击元素: textContains:更多安全设置
+2026-09-29 15:56:50,259 - autotest - INFO - 等待元素: textContains:保护 SIM 卡
+2026-09-29 15:56:50,643 - autotest - INFO - 点击元素: textContains:保护 SIM 卡
+2026-09-29 15:56:52,652 - autotest - INFO - 等待元素: textContains:锁定 SIM 卡
+2026-09-29 15:56:53,011 - autotest - INFO - 点击元素: textContains:锁定 SIM 卡
+2026-09-29 15:56:55,032 - autotest - INFO - 等待元素: resourceId:com.android.settings:id/current_sim_pin
+2026-09-29 15:57:05,581 - autotest - INFO - 🔌 驱动释放完成

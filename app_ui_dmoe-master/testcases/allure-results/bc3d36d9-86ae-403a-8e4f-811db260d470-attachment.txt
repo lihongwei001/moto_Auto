@@ -1,0 +1,21 @@
+2026-09-29 18:02:08,280 - autotest - INFO - 当前使用设备serial: 
+2026-09-29 18:02:08,586 - autotest - INFO - ✅ 设备  连接成功
+2026-09-29 18:02:08,587 - autotest - INFO - 读取Pin1_data路径：D:\Script\stress\app_ui_dmoe-master\data\Pin1_data.json
+2026-09-29 18:02:11,082 - autotest - INFO - 【循环上滑查找并点击】selector=textContains:安全与密码, max_swipe_times=5
+2026-09-29 18:02:11,083 - autotest - INFO - 当前查找元素 textContains:安全与密码，已滑动次数：0
+2026-09-29 18:02:11,947 - autotest - INFO - ✅元素已找到，开始尝试点击，最多重试2次
+2026-09-29 18:02:11,952 - autotest - INFO - 第1次点击尝试
+2026-09-29 18:02:32,023 - autotest - INFO - 本轮页面未找到元素，执行上滑
+2026-09-29 18:02:33,443 - autotest - INFO - 当前查找元素 textContains:安全与密码，已滑动次数：1
+2026-09-29 18:02:34,369 - autotest - INFO - ✅元素已找到，开始尝试点击，最多重试2次
+2026-09-29 18:02:34,379 - autotest - INFO - 第1次点击尝试
+2026-09-29 18:02:54,432 - autotest - INFO - 本轮页面未找到元素，执行上滑
+2026-09-29 18:02:55,754 - autotest - INFO - 当前查找元素 textContains:安全与密码，已滑动次数：2
+2026-09-29 18:02:56,661 - autotest - INFO - ✅元素已找到，开始尝试点击，最多重试2次
+2026-09-29 18:02:56,661 - autotest - INFO - 第1次点击尝试
+2026-09-29 18:03:16,782 - autotest - INFO - 本轮页面未找到元素，执行上滑
+2026-09-29 18:03:18,088 - autotest - INFO - 当前查找元素 textContains:安全与密码，已滑动次数：3
+2026-09-29 18:03:18,127 - autotest - INFO - ✅元素已找到，开始尝试点击，最多重试2次
+2026-09-29 18:03:18,127 - autotest - INFO - 第1次点击尝试
+2026-09-29 18:03:20,705 - autotest - INFO - 等待元素: textContains:更多安全设置
+2026-09-29 18:04:01,499 - autotest - INFO - 🔌 驱动释放完成
