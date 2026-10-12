@@ -29,7 +29,7 @@ class SettingPage(BasePage):
     #”移动网络“下的二级界面元素定位
     APM = "textContains:飞行模式"
     mobileData = "text:移动数据"
-    simCard = "textContains:SIM卡和移动网络"
+    simCard = "textContains:SIM 卡和移动网络"
     network_speed = "textContains:实时网速"
     def click_APM(self):
         self.click_element(self.APM)
@@ -70,6 +70,14 @@ class SettingPage(BasePage):
     #"SIM卡和移动网络"下的三级界面元素定位
     operator_interface1 = "xpath:(//android.view.View)[6]"
     operator_interface2 = "xpath:(//android.view.View)[15]"
+    switch_call_card1 = "xpath://*[@content-desc='Sim 卡 1']"
+    switch_call_card2 = "xpath://*[@content-desc='Sim 卡 2']"
+    intelligent_card_selection = "textContains:智能选卡"
+    close_ics_button = "textContains:将其关闭"
+    open_ics_button = "xpath://android.widget.Button"
+    switch_sms_card1 = "xpath:(//*[@content-desc='Sim 卡 1'])[2]"
+    switch_sms_card2 = "xpath:(//*[@content-desc='Sim 卡 2'])[2]"
+
 
     def click_operator_interface1(self):
         self.click_element(self.operator_interface1)
@@ -77,10 +85,32 @@ class SettingPage(BasePage):
     def click_operator_interface2(self):
         self.click_element(self.operator_interface2)
         time.sleep(2)
+    def click_switch_call_card1(self):
+        self.click_element(self.switch_call_card1)
+        time.sleep(2)
+    def click_switch_call_card2(self):
+        self.click_element(self.switch_call_card2)
+        time.sleep(2)
+    def click_intelligent_card_selection(self):
+        self.click_element(self.intelligent_card_selection)
+        time.sleep(2)
+    def click_close_ics_button(self):
+        self.click_element(self.close_ics_button)
+        time.sleep(2)
+
+    def click_open_ics_button(self):
+        self.click_element(self.open_ics_button)
+        time.sleep(2)
+    def click_switch_sms_card1(self):
+        self.click_element(self.switch_sms_card1)
+        time.sleep(2)
+    def click_switch_sms_card2(self):
+        self.click_element(self.switch_sms_card2)
+        time.sleep(2)
     #运营商下的四级界面元素定位
     network_tyep = "textContains:首选网络类型"
-    network_5g = "textContains:5G/4G/3G/2G"
-    network_4g = "textContains:4G/3G/2G"
+    network_5g = "textContains:5G"
+    network_4g = "textContains:4G"
     button_5g = "xpath:(//android.widget.RelativeLayout)[7]"
     smart_network_switch = "textContains:智能数据模式"
     use_SA = "textContains:使用 SA"
@@ -88,7 +118,10 @@ class SettingPage(BasePage):
     confirmButton = "resourceId:android:id/button1"
     cancelButton = "resourceId:android:id/button2"
     # mobile_Network_security = "textContains:移动网络安全"
-    def click_network_tyep(self):
+    def click_network_tyep(self,max_times=2):
+        for i in range(max_times):
+            self.swipe_up()
+            time.sleep(1)
         self.click_element(self.network_tyep)
         time.sleep(2)
     def click_network_5g(self):

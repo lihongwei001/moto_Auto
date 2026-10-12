@@ -13,4 +13,6 @@ def test_send_sms(driver, sms_data):
         sms_page.set_receiver(data["receiver"])
     with allure.step("填写短信内容并发送"):
         sms_page.set_content(data["msg_content"])
+        sms_page.click_select_sim_card()
+        sms_page.click_sim2()
         sms_page.send_sms()
