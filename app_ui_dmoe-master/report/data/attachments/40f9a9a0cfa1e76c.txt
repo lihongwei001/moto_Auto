@@ -1,6 +1,0 @@
-[32mINFO    [0m root:utils.py:31 尝试获取App端WebDriver...
-[32mINFO    [0m root:utils.py:52 复用已存在的Appium WebDriver实例
-[32mINFO    [0m root:base_page.py:21 找到元素: ('xpath', '//androidx.appcompat.app.ActionBar.c[@content-desc="首页"]')
-[32mINFO    [0m root:utils.py:31 尝试获取App端WebDriver...
-[32mINFO    [0m root:utils.py:52 复用已存在的Appium WebDriver实例
-[32mINFO    [0m root:test_user_zhu_ye.py:18 test_user_shou_ye

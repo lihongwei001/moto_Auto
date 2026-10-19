@@ -10,12 +10,17 @@ class CallPage(BasePage):
     hangup_btn = "resourceId:com.android.dialer:id/incall_end_call"
     accept_call_btn = "textContains:接听"
     disaccept_call_btn = "textContains:拒接"
+    answer_video_call = "xpath://*[@content-desc='视频通话']"
     call_hold_btn = "textContains:保持"
     call_add_btn = "textContains:添加通话"
     call_switch_video_btn = "textContains:视频通话"
     call_mute_btn = "textContains:静音"
     call__speaker_btn = "xpath:(//android.widget.RelativeLayout)[2]"
     call_keyboard_btn = "resourceId:com.android.dialer:id/incall_dialpad"
+    latest_number = "xpath:(//android.widget.LinearLayout)[43]"
+    video_call_button = "resourceId:com.android.dialer:id/third_icon"
+    video_call_sim1 = "xpath://*[@resource-id='com.android.dialer:id/icon']"
+    video_call_sim2 = "xpath:(//*[@resource-id='com.android.dialer:id/icon'])[2]"
 
     # ===== 新增：拨号键盘数字按钮定位 =====
     num_0 = "resourceId:com.android.dialer:id/zero"
@@ -72,6 +77,10 @@ class CallPage(BasePage):
     def accept_incoming_call(self):
         """接听来电"""
         self.click_element(self.accept_call_btn)
+    def answer_video(self):
+        "接听视频来电"
+        self.click_element(self.answer_video_call)
+        time.sleep(2)
     def disaccept_incoming_call(self):
         "拒接来电"
         self.click_element(self.disaccept_call_btn)
@@ -99,3 +108,15 @@ class CallPage(BasePage):
     def call_keyboard(self):
         "通话界面键盘"
         self.click_element(self.call_keyboard_btn)
+    def click_latest_number(self):
+        "点击最近通话号码"
+        self.click_element(self.latest_number)
+    def click_video_call_button(self):
+        "点击视频通话按钮"
+        self.click_element(self.video_call_button)
+    def click_video_call_sim1(self):
+        "点击视频通话卡1"
+        self.click_element(self.video_call_sim1)
+    def click_video_call_sim2(self):
+        "点击视频通话卡2"
+        self.click_element(self.video_call_sim2)

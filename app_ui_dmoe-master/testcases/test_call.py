@@ -29,3 +29,17 @@ def test_make_call(driver, call_data):
     #     call_page.call_speaker()
     with allure.step("挂断电话"):
         call_page.hang_up()
+
+def test_answer_video_call(driver):
+    call_page = CallPage(driver)
+    with allure.step("接听视频来电"):
+        call_page.answer_video()
+
+def test_mo_video_call(driver):
+    call_page = CallPage(driver)
+    with allure.step("发起视频通话"):
+        call_page.click_latest_number()
+        call_page.click_video_call_button()
+        call_page.click_video_call_sim2()
+
+
