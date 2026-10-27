@@ -4,7 +4,8 @@ from page.settinng_page import *
 @allure.feature("PIN1模块")
 @allure.story("PIN1测试")
 def test_PIN1(driver,pin1_data):
-    setting_page = SettingPage(driver)
+    main_driver, sup_driver = driver
+    setting_page = SettingPage(main_driver)
     data = pin1_data["PIN1"]
     with allure.step("打开设置"):
         setting_page.open_Setting_app()
@@ -16,3 +17,4 @@ def test_PIN1(driver,pin1_data):
         # setting_page.click_lockSIM2()
         setting_page.inputPIN1(data)
         setting_page.click_confirmButton()
+        setting_page.check_pin_status(1)

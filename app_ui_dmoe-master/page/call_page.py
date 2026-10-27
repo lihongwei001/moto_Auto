@@ -1,4 +1,7 @@
 import time
+import re
+
+import uiautomator2
 
 from common.base_page import BasePage
 
@@ -8,7 +11,7 @@ class CallPage(BasePage):
     call_btn = "resourceId:com.android.dialer:id/sim_card_0"
     hangup_videoRingtone_btn = "resourceId:com.android.dialer:id/videocall_end_call"
     hangup_btn = "resourceId:com.android.dialer:id/incall_end_call"
-    accept_call_btn = "textContains:接听"
+    accept_call_btn = "xpath://*[@content-desc='接听']"
     disaccept_call_btn = "textContains:拒接"
     answer_video_call = "xpath://*[@content-desc='视频通话']"
     call_hold_btn = "textContains:保持"
@@ -70,10 +73,10 @@ class CallPage(BasePage):
 
     def hang_up(self):
         """挂断"""
-        if self.is_element_exist(self.hangup_videoRingtone_btn):
-            self.click_element(self.hangup_videoRingtone_btn)
-        elif self.is_element_exist(self.hangup_btn):
+        if self.is_element_exist(self.hangup_btn):
             self.click_element(self.hangup_btn)
+        elif self.is_element_exist(self.hangup_videoRingtone_btn):
+            self.click_element(self.hangup_videoRingtone_btn)
     def accept_incoming_call(self):
         """接听来电"""
         self.click_element(self.accept_call_btn)
@@ -120,3 +123,73 @@ class CallPage(BasePage):
     def click_video_call_sim2(self):
         "点击视频通话卡2"
         self.click_element(self.video_call_sim2)
+
+    def get_call_state(self, sim_slot=1):
+
+        """
+        获取指定 SIM 卡的通话状态。
+
+        sim_slot: 1 表示 SIM1，2 表示 SIM2。
+
+        返回示例：
+        {
+            "sim_slot": 1,
+            "call_state": 2,
+            "call_state_name": "通话中",
+            "background_call_state": 2,
+            "is_holding": True,
+        }
+
+        注意：按当前设备约定，将每个字段的第一条记录视为 SIM1，
+        第二条记录视为 SIM2。
+        """
+        if sim_slot not in (1, 2):
+            raise ValueError("sim_slot 只能为 1 或 2")
+
+        result = self.driver.shell(
+            "dumpsys telephony.registry",
+            timeout=10,
+        )
+
+        if result.exit_code != 0:
+            raise RuntimeError(
+                f"读取通话状态失败，退出码={result.exit_code}，"
+                f"输出={result.output}"
+            )
+#引用re模块的findall函数来提取通话状态和后台通话状态的值（正则表达式）
+        call_states = re.findall(
+            r"\bmCallState\s*=\s*(\d+)\b",
+            result.output,
+        )
+        background_states = re.findall(
+            r"\bmBackgroundCallState\s*=\s*(\d+)\b",
+            result.output,
+        )
+
+        if len(call_states) != 2 or len(background_states) != 2:
+            raise RuntimeError(
+                "通话状态记录数量不符合预期，应各有两条："
+                f"mCallState={call_states}，"
+                f"mBackgroundCallState={background_states}"
+            )
+
+        index = sim_slot - 1
+        call_state = int(call_states[index])
+        background_state = int(background_states[index])
+
+        state_names = {
+            0: "空闲",
+            1: "响铃",
+            2: "通话中",
+        }
+
+        if call_state not in state_names:
+            raise RuntimeError(f"未识别的 mCallState：{call_state}")
+
+        return {
+            "sim_slot": sim_slot,
+            "call_state": call_state,
+            "call_state_name": state_names[call_state],
+            "background_call_state": background_state,
+            "is_holding": background_state == 2,
+        }

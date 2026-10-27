@@ -1,0 +1,13 @@
+{
+  "DUT_SN": "NMUC410072",
+  "SUP_SN": "N4VC210150",
+  "SUP_sim1": {
+    "receiver": "18910860086",
+    "wait_seconds": 8
+  },
+   "SUP_sim2": {
+    "receiver": "13641211541",
+    "wait_seconds": 8
+  },
+  "PIN1": "1234"
+}

@@ -11,6 +11,7 @@ class SmsPage(BasePage):
     sms_sim1 = "xpath://*[@resource-id='com.android.messaging:id/sim_icon']"
     sms_sim2 = "xpath:(//*[@resource-id='com.android.messaging:id/sim_icon'])[2]"
     send_btn = "resourceId:com.android.messaging:id/send_icon"
+    latest_sms_content_selector = "resourceId:com.android.messaging:id/conversation_snippet"
 
     def open_sms_app(self):
         self.driver.app_start(self.sms_app_package, stop=True)
@@ -33,3 +34,11 @@ class SmsPage(BasePage):
 
     def send_sms(self):
         self.click_element(self.send_btn)
+    def check_sms_content(self, target_text):
+        """获取最新一条短信的内容"""
+        if self.driver(resourceId="com.android.messaging:id/conversation_snippet", textContains=target_text).exists(timeout=5):
+            print(f"【校验成功】会话列表已收到：{target_text}")
+            return True
+        else:
+            print(f"【校验失败】未检测到目标短信：{target_text}")
+            return False

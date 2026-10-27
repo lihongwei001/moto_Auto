@@ -16,6 +16,7 @@ def parse_selector(selector_str):
         expr = selector_str.replace("xpath:", "", 1)
         return ("xpath", expr)
     # 多条件普通选择器
+
     res = {}
     for item in selector_str.split(","):
         item = item.strip()
@@ -63,6 +64,7 @@ class BasePage:
     def wait_element(self, selector, timeout=10):
         logger.info(f"等待元素: {selector}")
         type_, val = parse_selector(selector)
+        print(f"等待元素: {selector}, type: {type_}, val: {val}")
         if type_ == "xpath":
             # xpath 单独走 xpath api
             return self.driver.xpath(val).wait(timeout=timeout)
@@ -87,6 +89,14 @@ class BasePage:
         else:
             self.driver(**val).set_text(text)
         logger.info(f"输入内容: {text}")
+
+    def get_element_text(self, selector, timeout=10):
+        self.wait_element(selector, timeout)
+        type_, val = parse_selector(selector)
+        if type_ == "xpath":
+            return self.driver.xpath(val).get_text()
+        else:
+            return self.driver(**val).get_text()
 
     @allure.step("页面截图")
     def screenshot(self, name):
