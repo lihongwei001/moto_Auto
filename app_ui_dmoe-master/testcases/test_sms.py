@@ -4,8 +4,7 @@ from datetime import datetime
 
 @allure.feature("短信模块")
 @allure.story("短信收发测试")
-def test_send_sms(driver, sms_data):
-    main_driver, sup_driver = driver  # 解包 driver
+def test_send_sms(main_driver, sup_driver, sms_data):
     sms_page = SmsPage(main_driver)
     sup_page = SmsPage(sup_driver)
     data = sms_data["SUP_sim1"]
@@ -23,4 +22,4 @@ def test_send_sms(driver, sms_data):
         sms_page.send_sms()
     with allure.step("辅助机接收短信并校验内容"):
         sup_page.open_sms_app()
-        sup_page.check_sms_content(now_str)
+        assert sup_page.check_sms_content(now_str), "辅助机未在期限内收到目标短信"

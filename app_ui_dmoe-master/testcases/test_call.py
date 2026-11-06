@@ -3,8 +3,7 @@ from page.call_page import CallPage
 
 @allure.feature("通话模块")
 @allure.story("呼叫测试")
-def test_make_call(driver, call_data):
-    main_driver, sup_driver = driver  # 解包 driver
+def test_make_call(main_driver, sup_driver, call_data):
     call_page = CallPage(main_driver)
     sup_page = CallPage(sup_driver)
     data = call_data["SUP_sim1"]
@@ -17,6 +16,9 @@ def test_make_call(driver, call_data):
         main_driver.sleep(data["wait_seconds"])
     with allure.step("接听来电"):
         sup_page.accept_incoming_call()
+    with allure.step("等待双方进入通话状态"):
+        call_page.wait_call_state(sim_slot=1, expected=2)
+        sup_page.wait_call_state(sim_slot=1, expected=2)
     # with allure.step("拒接来电"):
     #     call_page.disaccept_incoming_call()
     # with allure.step("打开呼叫保持"):
@@ -32,24 +34,24 @@ def test_make_call(driver, call_data):
     with allure.step("挂断电话"):
         call_page.hang_up()
 
-def test_answer_video_call(driver):
-    call_page = CallPage(driver)
+def test_answer_video_call(main_driver):
+    call_page = CallPage(main_driver)
     with allure.step("接听视频来电"):
         call_page.answer_video()
 
-def test_mo_video_call(driver):
-    call_page = CallPage(driver)
+def test_mo_video_call(main_driver):
+    call_page = CallPage(main_driver)
     with allure.step("发起视频通话"):
         call_page.click_latest_number()
         call_page.click_video_call_button()
         call_page.click_video_call_sim2()
 
 
-def test_check_call_state(driver, device_serial):
-    call_page = CallPage(driver)
+def test_check_call_state(main_driver):
+    call_page = CallPage(main_driver)
 
     # 获取 SIM1 状态
-    sim1 = call_page.get_call_state(sim_slot=1, serial=device_serial)
+    sim1 = call_page.get_call_state(sim_slot=1)
     print(f"SIM1：{sim1['call_state_name']}")
     print(f"SIM1 是否保持：{sim1['is_holding']}")
 

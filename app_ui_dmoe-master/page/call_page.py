@@ -1,9 +1,8 @@
-import time
 import re
 
-import uiautomator2
-
 from common.base_page import BasePage
+from common.driver_util import DriverUtil
+from common.log_util import logger
 
 class CallPage(BasePage):
     # 元素定位
@@ -41,7 +40,7 @@ class CallPage(BasePage):
     def open_call_app(self):
         """打开拨号APP"""
         self.driver.app_start("com.android.dialer", stop=True)
-        time.sleep(5)
+        self.wait_element(self.num_0)
 
     def input_number_by_click(self, phone_number):
         """
@@ -71,19 +70,38 @@ class CallPage(BasePage):
         """发起呼叫"""
         self.click_element(self.call_btn)
 
-    def hang_up(self):
+    def hang_up(self, timeout=10):
         """挂断"""
-        if self.is_element_exist(self.hangup_btn):
-            self.click_element(self.hangup_btn)
-        elif self.is_element_exist(self.hangup_videoRingtone_btn):
-            self.click_element(self.hangup_videoRingtone_btn)
-    def accept_incoming_call(self):
+        def read_target():
+            for selector in (self.hangup_btn, self.hangup_videoRingtone_btn):
+                if self.is_element_exist(selector, timeout=0):
+                    return {"selector": selector, "states": None}
+            return {
+                "selector": None,
+                "states": [self.get_call_state(slot)["call_state"] for slot in (1, 2)],
+            }
+
+        target = self.wait_until(
+            read_target,
+            lambda value: value["selector"] is not None or value["states"] == [0, 0],
+            "挂断按钮出现或两张 SIM 均空闲", timeout,
+        )
+        if target["selector"] is None:
+            logger.info("设备已空闲，无需挂断")
+            return
+        self.click_element(target["selector"], timeout=0)
+        self.wait_until(
+            lambda: [self.get_call_state(slot)["call_state"] for slot in (1, 2)],
+            lambda states: states == [0, 0],
+            "挂断后两张 SIM 均空闲", timeout,
+        )
+
+    def accept_incoming_call(self, timeout=30):
         """接听来电"""
-        self.click_element(self.accept_call_btn)
+        self.click_element(self.accept_call_btn, timeout=timeout)
     def answer_video(self):
         "接听视频来电"
         self.click_element(self.answer_video_call)
-        time.sleep(2)
     def disaccept_incoming_call(self):
         "拒接来电"
         self.click_element(self.disaccept_call_btn)
@@ -124,6 +142,15 @@ class CallPage(BasePage):
         "点击视频通话卡2"
         self.click_element(self.video_call_sim2)
 
+    def wait_call_state(self, sim_slot, expected, timeout=30):
+        if expected not in (0, 1, 2):
+            raise ValueError("expected 只能为 0（空闲）、1（响铃）、2（通话中）")
+        return self.wait_until(
+            lambda: self.get_call_state(sim_slot),
+            lambda state: state["call_state"] == expected,
+            f"SIM{sim_slot} 通话状态变为 {expected}", timeout,
+        )
+
     def get_call_state(self, sim_slot=1):
 
         """
@@ -146,24 +173,14 @@ class CallPage(BasePage):
         if sim_slot not in (1, 2):
             raise ValueError("sim_slot 只能为 1 或 2")
 
-        result = self.driver.shell(
-            "dumpsys telephony.registry",
-            timeout=10,
-        )
-
-        if result.exit_code != 0:
-            raise RuntimeError(
-                f"读取通话状态失败，退出码={result.exit_code}，"
-                f"输出={result.output}"
-            )
-#引用re模块的findall函数来提取通话状态和后台通话状态的值（正则表达式）
+        output = DriverUtil.device_shell(self.driver, "dumpsys telephony.registry")
         call_states = re.findall(
             r"\bmCallState\s*=\s*(\d+)\b",
-            result.output,
+            output,
         )
         background_states = re.findall(
             r"\bmBackgroundCallState\s*=\s*(\d+)\b",
-            result.output,
+            output,
         )
 
         if len(call_states) != 2 or len(background_states) != 2:

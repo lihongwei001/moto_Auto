@@ -1,0 +1,195 @@
+{
+  "commands": [
+    {
+      "at_command": "AT",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGACT=?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGDCONT?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGMI",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGREG?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGREG=?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGREG=2",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+C5GREG=2",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGREG=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGREG=0",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CLCK=?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CLCK=\"SC\",1,\"1234\"",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CLCK=\"SC\",0,\"1234\"",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CIMI",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CTSA=?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CTSA=1,20,50",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGSN",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGQREQ=1,2,4,5,5,16",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGQMIN=1,0,4,5,3,31",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGMR",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGQREQ",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGATT=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CCLK?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CCLK=\"13/11/25,18:45:00\"",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CCLK=?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT*CNTI?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT*CNTI=0",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT*CNTI=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT*CNTI=2",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGEQREQ=6,2,384,384,,,1,320,\"1E4\",\"1E5\",1,,3",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CGMM",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+COPS?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CKPD=\"M\"",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CKPD=9,0,0",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN=4",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN=0",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CFUN?",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CRSL?",
+      "prerequisites": [
+        "adb root",
+        "adb shell setprop persist.radio.atfwd.start true",
+        "adb shell setprop persist.radio.relay_oprt_change true"
+      ]
+    },
+    {
+      "at_command": "AT+CRSL=4",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CHLD=2",
+      "prerequisites": [
+        "adb shell am start -a android.intent.action.CALL -d tel:10086"
+      ]
+    },
+    {
+      "at_command": "AT+CHLD=1",
+      "prerequisites": []
+    },
+    {
+      "at_command": "AT+CHUP",
+      "prerequisites": []
+    },
+    {
+        "at_command": "AT+CFUN=1,1",
+        "prerequisites": []
+    }
+
+  ]
+}

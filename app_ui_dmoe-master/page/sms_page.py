@@ -1,6 +1,5 @@
-import time
-
-from common.base_page import BasePage
+from common.base_page import BasePage, WaitTimeoutError
+from common.log_util import logger
 
 class SmsPage(BasePage):
     sms_app_package = "com.android.messaging"
@@ -15,6 +14,7 @@ class SmsPage(BasePage):
 
     def open_sms_app(self):
         self.driver.app_start(self.sms_app_package, stop=True)
+        self.wait_element(self.new_msg_btn)
 
     def create_new_sms(self):
         self.click_element(self.new_msg_btn)
@@ -26,7 +26,6 @@ class SmsPage(BasePage):
         self.input_text(self.content_input, content)
     def click_select_sim_card(self):
         self.click_element(self.sim_card_select)
-        time.sleep(2)
     def click_sim1(self):
         self.click_element(self.sms_sim1)
     def click_sim2(self):
@@ -34,11 +33,19 @@ class SmsPage(BasePage):
 
     def send_sms(self):
         self.click_element(self.send_btn)
-    def check_sms_content(self, target_text):
-        """获取最新一条短信的内容"""
-        if self.driver(resourceId="com.android.messaging:id/conversation_snippet", textContains=target_text).exists(timeout=5):
-            print(f"【校验成功】会话列表已收到：{target_text}")
-            return True
-        else:
-            print(f"【校验失败】未检测到目标短信：{target_text}")
+    def check_sms_content(self, target_text, timeout=30):
+        """等待会话列表出现包含目标内容的短信，通信异常直接传播。"""
+        element = self.driver(
+            resourceId="com.android.messaging:id/conversation_snippet",
+            textContains=target_text,
+        )
+        try:
+            self.wait_until(
+                lambda: bool(element.exists), bool,
+                "会话列表出现目标短信", timeout,
+            )
+        except WaitTimeoutError:
+            logger.warning(f"设备 {self.driver.serial} 在 {timeout}s 内未收到目标短信")
             return False
+        logger.info("会话列表已收到目标短信")
+        return True

@@ -97,12 +97,14 @@ def dial_call(dev, target_phone):
 def answer_incoming(dev):
     """adb按键接听来电"""
     print(f"[{dev.serial}] 执行adb接听按键 KEYCODE_CALL=5")
+    time.sleep(2)
     dev.shell("input keyevent 5")
     time.sleep(4)
 
 def hangup_call(dev):
     """adb按键挂断通话"""
     print(f"[{dev.serial}] 使用adb按键挂断通话 KEYCODE_ENDCALL=6")
+    time.sleep(2)
     dev.shell("input keyevent 6")
     time.sleep(2)
     dev.press("home")

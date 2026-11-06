@@ -3,8 +3,7 @@ from page.settinng_page import *
 
 @allure.feature("切换DDS模块")
 @allure.story("切换DDS测试")
-def test_switch_dds(driver):
-    main_driver, sup_driver = driver
+def test_switch_dds(main_driver):
     setting_page = SettingPage(main_driver)
     with allure.step("打开设置"):
         setting_page.open_Setting_app()

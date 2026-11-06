@@ -1,6 +1,7 @@
 {
-  "DUT_SN": "NMUC410072",
-  "SUP_SN": "N4VC210150",
+  "DUT_SN": "NEQC220143",
+  "SUP_SN": "N4AC230109",
+  "SUP2_SN": "N4AC220456",
   "SUP_sim1": {
     "receiver": "18910860086",
     "wait_seconds": 8

@@ -3,8 +3,8 @@ from page.settinng_page import *
 
 @allure.feature("切换首选通话sim卡模块")
 @allure.story("切换首选通话sim卡测试")
-def test_switch_call_sim(driver):
-    setting_page = SettingPage(driver)
+def test_switch_call_sim(main_driver):
+    setting_page = SettingPage(main_driver)
     # with allure.step("打开设置"):
     #     setting_page.open_Setting_app()
     with allure.step("切换首选通话sim卡为sim1,最终设置为'总询问'"):
