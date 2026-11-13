@@ -1,4 +1,6 @@
-from common.base_page import BasePage
+import time
+
+from common.base_page import BasePage, WaitTimeoutError
 from common.driver_util import DriverUtil
 from common.log_util import logger
 
@@ -11,13 +13,13 @@ class SettingPage(BasePage):
     def open_Setting_app(self):
         """打开设置"""
         self.driver.app_start("com.android.settings", stop=True)
-        self.wait_element(self.network)
     def close_Setting_app(self):
         """关闭设置"""
         self.driver.app_stop("com.android.settings")
-        self.driver.press("back")
+        # self.driver.press("back")
     def click_network(self):
         """打开网络与互联网"""
+        self.wait_element(self.network)
         self.click_element(self.network)
     def click_securityPrivacy(self,max_times=5):
         """打开安全与密码"""
@@ -48,11 +50,26 @@ class SettingPage(BasePage):
     def click_mobileData_button(self):
         self.click_element(self.mobileData_button)
     def click_switch_sim1(self):
-        self.click_element(self.switch_sim1)
-        self.click_element(self.switch_Confirm)
-        self.wait_element_gone(self.switch_Confirm)
+        self._click_switch_sim(self.switch_sim1)
     def click_switch_sim2(self):
-        self.click_element(self.switch_sim2)
+        self._click_switch_sim(self.switch_sim2)
+    def _click_switch_sim(self, selector):
+        for attempt in range(3):
+            if self.is_element_exist(self.switch_Confirm, timeout=0):
+                break
+            self.click_element(selector)
+            try:
+                self.wait_element(self.switch_Confirm, timeout=3)
+                break
+            except WaitTimeoutError:
+                if attempt == 2:
+                    raise WaitTimeoutError(
+                        f"设备 {self.driver.serial} 切换 DDS 失败："
+                        f"{selector} 已点击 3 次，每次等待 3s，仍未出现确认弹窗"
+                    ) from None
+                logger.warning(
+                    f"DDS 第 {attempt + 1} 次点击后未出现确认弹窗，将重试：{selector}"
+                )
         self.click_element(self.switch_Confirm)
         self.wait_element_gone(self.switch_Confirm)
     def click_switch_auto(self):
@@ -89,9 +106,9 @@ class SettingPage(BasePage):
     def click_switch_sms_card2(self):
         self.click_element(self.switch_sms_card2)
     #运营商下的四级界面元素定位
-    network_tyep = "textContains:首选网络类型"
-    network_5g = "textContains:5G"
-    network_4g = "textContains:4G"
+    # network_tyep = "textContains:首选网络类型"
+    # network_5g = "textContains:5G"
+    # network_4g = "textContains:4G"
     button_5g = "xpath:(//android.widget.RelativeLayout)[7]"
     smart_network_switch = "textContains:智能数据模式"
     use_SA = "textContains:使用 SA"
@@ -99,15 +116,81 @@ class SettingPage(BasePage):
     confirmButton = "resourceId:android:id/button1"
     cancelButton = "resourceId:android:id/button2"
     # mobile_Network_security = "textContains:移动网络安全"
-    def click_network_tyep(self,max_times=2):
-        self.scroll_to_element(self.network_tyep, max_swipes=max_times)
-        self.click_element(self.network_tyep)
-    def click_network_5g(self):
-        self.click_element(self.network_5g)
-    def click_network_4g(self):
-        self.click_element(self.network_4g)
-    def click_button_5g(self):
-        self.click_element(self.button_5g)
+    #采用*#*#4636拨号盘打开的电话服务设置更改networkType
+    phoneID = "resourceId:com.android.phone:id/phoneIndex"
+    phoneName = "xpath://*[@resource-id='android:id/text1']"
+    phone0 = "xpath://*[@text='Phone 0']"
+    phone1 = "xpath://*[@text='Phone 1']"
+    settNetworkTepe = "resourceId:com.android.phone:id/preferredNetworkType"
+    LTEonly = "xpath://*[@text='LTE/GSM']"
+    # LTEonly = "xpath://*[@text='LTE only']"
+    NRonly = "xpath://*[@text='NR only']"
+    sim_data_service = "resourceId:com.android.phone:id/gprs"
+    def open_phone_service(self):
+        self.driver.app_start(
+            "com.android.phone",
+            activity="com.android.phone.settings.RadioInfo",
+            stop=False,
+        )
+        self.scroll_to_element_down(self.phoneID, max_swipes=5, timeout=1)
+    def close_phone_service(self):
+        self.driver.app_stop("com.android.phone")
+        self.driver.press("back")
+    def click_phoneID(self):
+        self.scroll_to_element_down(self.phoneID, max_swipes=5, timeout=1)
+        self.click_element(self.phoneID)
+    def click_phone0(self):
+        self.click_element(self.phone0)
+    def click_phone1(self):
+        self.click_element(self.phone1)
+    def select_phone(self, sim):
+        if sim not in (1, 2):
+            raise ValueError("sim 只能为 1 或 2")
+        expected = f"Phone {sim - 1}"
+        option = self.phone0 if sim == 1 else self.phone1
+
+        def read_selection():
+            return self.get_element_text(self.phoneName, timeout=0).strip()
+
+        for attempt in range(3):
+            if read_selection() == expected:
+                return
+            # 按钮文字尚非目标值，此时目标文字只用于查找下拉选项。
+            if not self.is_element_exist(option, timeout=0):
+                self.click_phoneID()
+                self.wait_element(option)
+            self.click_element(option)
+            try:
+                self.wait_until(
+                    read_selection,
+                    lambda text: text == expected,
+                    f"电话信息页 phoneIndex 显示 SIM{sim}（{expected}）",
+                    timeout=5,
+                )
+                return
+            except WaitTimeoutError:
+                if attempt == 1:
+                    raise
+                logger.warning(f"SIM{sim} 选卡确认超时，将重试一次")
+    def click_settNetworkTepe(self):
+        self.scroll_to_element(self.settNetworkTepe, max_swipes=5)
+        self.wait_element(self.settNetworkTepe)
+        self.click_element(self.settNetworkTepe)
+    def click_LTEonly(self):
+        # self.scroll_to_element_down(self.LTEonly, max_swipes=5)
+        self.click_element(self.LTEonly)
+    def click_NRonly(self):
+        self.click_element(self.NRonly)
+
+    # def click_network_tyep(self,max_times=2):
+    #     self.scroll_to_element(self.network_tyep, max_swipes=max_times)
+    #     self.click_element(self.network_tyep)
+    # def click_network_5g(self):
+    #     self.click_element(self.network_5g)
+    # def click_network_4g(self):
+    #     self.click_element(self.network_4g)
+    # def click_button_5g(self):
+    #     self.click_element(self.button_5g)
 
     def click_smart_network_switch(self):
         self.click_element(self.smart_network_switch)
@@ -187,19 +270,63 @@ class SettingPage(BasePage):
         logger.info(f"SIM{sim} PIN 锁定状态：{checked}")
         return checked
 
-    #关于手机界面元素
-    details_information = "textContains:设备详细信息"
-    #设备详细信息界面元素
-    sim1_status = "textContains:SIM 卡 1 状态"
-    sim2_status = "textContains:SIM 卡 2 状态"
-    data_status = "resourceId:com.android.settings:id/data_state_value"
+    # #关于手机界面元素
+    # details_information = "textContains:设备详细信息"
+    # #设备详细信息界面元素
+    # sim1_status = "textContains:SIM 卡 1 状态"
+    # sim2_status = "textContains:SIM 卡 2 状态"
+    # data_status = "resourceId:com.android.settings:id/data_state_value"
+    #判断dds状态
     def check_dds_status(self,sim):
         if sim not in (1, 2):
             raise ValueError("sim 只能为 1 或 2")
-        self.scroll_to_element(self.about_phone, max_swipes=5)
-        self.click_element(self.about_phone)
-        self.click_element(self.details_information)
-        self.click_element(self.sim1_status if sim == 1 else self.sim2_status)
-        dds_status = self.get_element_text(self.data_status)
+        self.open_phone_service()
+        self.select_phone(sim)
+        dds_status = self.get_element_text(self.sim_data_service)
         logger.info(f"SIM{sim} 数据状态: {dds_status}")
         return dds_status
+    def settSIM1_dds(self):
+        if self.check_dds_status(1) != "已连接":
+            self.open_Setting_app()
+            time.sleep(2)
+            if self.is_element_exist(self.mobileData_button, timeout=0):
+                logger.info("已在移动数据界面")
+                self.click_switch_sim1()
+            else:
+                self.click_network()
+                self.click_mobileData()
+                self.click_switch_sim1()
+        else:
+            logger.info("SIM1已是dds，无需切换")
+    def settSIM2_dds(self):
+        if self.check_dds_status(2) != "已连接":
+            self.open_Setting_app()
+            if self.is_element_exist(self.mobileData_button, timeout=0):
+                logger.info("已在移动数据界面")
+            else:
+                self.click_network()
+                self.click_mobileData()
+            self.click_switch_sim2()
+        else:
+            logger.info("SIM2已是dds，无需切换")
+
+    def settSIM1_LTE(self):
+        self.open_phone_service()
+        self.select_phone(1)
+        self.click_settNetworkTepe()
+        self.click_LTEonly()
+    def settSIM1_NR(self):
+        self.open_phone_service()
+        self.select_phone(1)
+        self.click_settNetworkTepe()
+        self.click_NRonly()
+    def settSIM2_LTE(self):
+        self.open_phone_service()
+        self.select_phone(2)
+        self.click_settNetworkTepe()
+        self.click_LTEonly()
+    def settSIM2_NR(self):
+        self.open_phone_service()
+        self.select_phone(2)
+        self.click_settNetworkTepe()
+        self.click_NRonly()
