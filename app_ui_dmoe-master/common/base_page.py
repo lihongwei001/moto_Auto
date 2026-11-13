@@ -121,7 +121,19 @@ class BasePage:
                         f"{selector}，最多滑动 {max_swipes} 次"
                     ) from None
                 self.swipe_up()
-
+    def scroll_to_element_down(self, selector, max_swipes=5, timeout=1):
+        if not isinstance(max_swipes, int) or max_swipes < 0:
+            raise ValueError("max_swipes 必须是非负整数")
+        for attempt in range(max_swipes + 1):
+            try:
+                return self.wait_element(selector, timeout)
+            except WaitTimeoutError:
+                if attempt == max_swipes:
+                    raise WaitTimeoutError(
+                        f"设备 {self.driver.serial} 滑动查找失败："
+                        f"{selector}，最多滑动 {max_swipes} 次"
+                    ) from None
+                self.swipe_down()
     def click_element(self, selector, timeout=10):
         type_, _ = parse_selector(selector)
         element = self.wait_element(selector, timeout)

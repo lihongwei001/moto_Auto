@@ -6,8 +6,8 @@ from common.log_util import logger
 
 class CallPage(BasePage):
     # 元素定位
-    # call_btn = "resourceId:com.android.dialer:id/lable_sim1"
-    call_btn = "resourceId:com.android.dialer:id/sim_card_0"
+    call_btn2 = "resourceId:com.android.dialer:id/lable_sim1"
+    call_btn1 = "resourceId:com.android.dialer:id/sim_card_0"
     hangup_videoRingtone_btn = "resourceId:com.android.dialer:id/videocall_end_call"
     hangup_btn = "resourceId:com.android.dialer:id/incall_end_call"
     accept_call_btn = "xpath://*[@content-desc='接听']"
@@ -19,7 +19,7 @@ class CallPage(BasePage):
     call_mute_btn = "textContains:静音"
     call__speaker_btn = "xpath:(//android.widget.RelativeLayout)[2]"
     call_keyboard_btn = "resourceId:com.android.dialer:id/incall_dialpad"
-    latest_number = "xpath:(//android.widget.LinearLayout)[43]"
+    # target_number = "xpath:(//android.widget.LinearLayout)[43]"
     video_call_button = "resourceId:com.android.dialer:id/third_icon"
     video_call_sim1 = "xpath://*[@resource-id='com.android.dialer:id/icon']"
     video_call_sim2 = "xpath:(//*[@resource-id='com.android.dialer:id/icon'])[2]"
@@ -66,9 +66,12 @@ class CallPage(BasePage):
             selector = num_map[char]
             self.click_element(selector)
 
-    def make_call(self):
+    def make_call(self,sim):
         """发起呼叫"""
-        self.click_element(self.call_btn)
+        if sim == 2:
+            self.click_element(self.call_btn2)
+        else:
+            self.click_element(self.call_btn1)
 
     def hang_up(self, timeout=10):
         """挂断"""
@@ -210,3 +213,46 @@ class CallPage(BasePage):
             "background_call_state": background_state,
             "is_holding": background_state == 2,
         }
+
+    def voice_dial(self, number, sim_slot):
+        if sim_slot not in (1, 2):
+            raise ValueError("sim_slot 只能为 1 或 2")
+        self.open_call_app()
+        self.input_number_by_click(number)
+        self.make_call(sim_slot)
+
+    def click_target_number(self, number, timeout=10):
+        if not isinstance(number, str):
+            raise ValueError("号码必须是字符串")
+
+        # 忽略分组空格、短横线及文本方向控制符，保留号码本身。
+        ignored = (
+            " -()\t\r\n"
+            "\u00a0\u202f"
+            "\u200e\u200f"
+            "\u202a\u202b\u202c\u202d\u202e"
+            "\u2066\u2067\u2068\u2069"
+        )
+        normalized = number.translate(str.maketrans("", "", ignored))
+
+        if not re.fullmatch(r"\+?[0-9]+", normalized):
+            raise ValueError("号码格式无效，应包含数字及可选的开头加号")
+
+        selector = (
+            "xpath://*[@text and "
+            f"translate(@text, '{ignored}', '')='{normalized}']"
+        )
+        self.click_element(selector, timeout=timeout)
+    def video_dial(self, number, sim_slot):
+        if sim_slot not in (1, 2):
+            raise ValueError("sim_slot 只能为 1 或 2")
+        self.open_call_app()
+        self.input_number_by_click(number)
+        self.make_call(sim_slot)
+        self.hang_up()
+        self.click_target_number(number)
+        self.click_video_call_button()
+        if sim_slot == 1:
+            self.click_video_call_sim1()
+        else:
+            self.click_video_call_sim2()

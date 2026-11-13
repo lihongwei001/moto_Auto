@@ -4,7 +4,7 @@ import sys
 import time
 import serial
 
-PORT = "COM47"
+PORT = "COM32"
 BAUDRATE = 115200
 RESPONSE_TIMEOUT = 10
 CONFIG_FILE = "commands_config.json"

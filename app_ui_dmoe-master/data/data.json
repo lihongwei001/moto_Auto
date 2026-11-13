@@ -1,13 +1,13 @@
 {
-  "DUT_SN": "NEQC220143",
-  "SUP_SN": "N4AC230109",
-  "SUP2_SN": "N4AC220456",
+  "DUT_SN": "N4AC220456",
+  "SUP_SN": "",
+  "SUP2_SN": "",
   "SUP_sim1": {
-    "receiver": "18910860086",
+    "receiver": "13436858552",
     "wait_seconds": 8
   },
    "SUP_sim2": {
-    "receiver": "13641211541",
+    "receiver": "18910860086",
     "wait_seconds": 8
   },
   "PIN1": "1234"
