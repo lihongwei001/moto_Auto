@@ -330,3 +330,22 @@ class SettingPage(BasePage):
         self.select_phone(2)
         self.click_settNetworkTepe()
         self.click_NRonly()
+
+    def ping_data(self):
+        """ping测试"""
+        output = DriverUtil.device_shell(self.driver, "ping -c 4 www.baidu.com")
+        if "4 packets transmitted, 4 received" in output:
+            logger.info(f"设备 {self.driver.serial} ping 测试成功")
+            return True
+        else:
+            logger.warning(f"设备 {self.driver.serial} ping 测试失败，输出：{output}")
+            return False
+    def ping_ipv6_data(self):
+        """ping测试"""
+        output = DriverUtil.device_shell(self.driver, "ping6 -c 4 www.baidu.com")
+        if "4 packets transmitted, 4 received" in output:
+            logger.info(f"设备 {self.driver.serial} ipv6 ping 测试成功")
+            return True
+        else:
+            logger.warning(f"设备 {self.driver.serial} ipv6 ping 测试失败，输出：{output}")
+            return False

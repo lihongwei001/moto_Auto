@@ -88,6 +88,7 @@ class BasePage:
         if not math.isfinite(timeout) or timeout < 0:
             raise ValueError("timeout 必须是非负有限数值")
         type_, val = parse_selector(selector)
+        print(f"等待元素: {selector}, type: {type_}, val: {val}")
         if type_ == "xpath":
             matches = self.wait_until(
                 lambda: self.driver.xpath(val).all(),

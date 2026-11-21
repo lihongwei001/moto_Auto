@@ -1,0 +1,40 @@
+{
+  "commands":
+  [
+    {
+      "name": "AT Command AT+CFUN=1,1 Reboot",
+      "vale": "AT+CFUN=1,1",
+      "prerequisites": [],
+      "expected_response": "OK"
+    },
+    {
+      "name": "AT Command: AT+CFUN",
+      "at_command": ["at+cfun=4","at+cfun=1","at+cfun=0","at+cfun?","at+cfun=1","at+cfun?"],
+      "prerequisites": [],
+      "expected_response": ["OK","OK","OK","+CFUN: 0\n\nOK","OK","+CFUN: 1\n\nOK"]
+    },
+    {
+      "name": "AT Command: AT+CGACT",
+      "at_command": "AT+CGACT?",
+      "prerequisites": [],
+      "expected_response": "OK"},
+    {
+      "name": "AT Command: AT+CGATT",
+      "at_command": "AT+CGATT=1",
+      "prerequisites": [],
+      "expected_response": "OK"
+    },
+    {
+      "name": "AT Command: AT",
+      "at_command": "AT",
+      "prerequisites": [],
+      "expected_response": "OK"
+    },
+    {
+      "name": "AT Command: AT+CCLK",
+      "at_command": ["AT+CTZU = 1","AT+CCLK?","AT+CCLK='13/11/25,18:45:00'","AT+CCLK=?","AT+CCLK?"],
+      "prerequisites": [],
+      "expected_response": ["OK","OK","+CCLK: '13/11/25,18:45:00'\n\nOK","OK","+CCLK: '13/11/25,18:45:00'\n\nOK"]
+    }
+  ]
+}

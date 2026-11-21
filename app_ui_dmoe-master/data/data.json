@@ -1,14 +1,22 @@
 {
   "DUT_SN": "N4AC220456",
-  "SUP_SN": "",
-  "SUP2_SN": "",
+  "SUP_SN": "N0UC230116",
+  "SUP2_SN": "N4AC230109",
   "SUP_sim1": {
-    "receiver": "13436858552",
+    "receiver": "16737113203",
     "wait_seconds": 8
   },
    "SUP_sim2": {
     "receiver": "18910860086",
     "wait_seconds": 8
   },
+  "SUP2_sim1": {
+    "receiver": "17147184483",
+    "wait_seconds": 8
+  },
+    "SUP2_sim2": {
+        "receiver": "13027135509",
+        "wait_seconds": 8
+    },
   "PIN1": "1234"
 }

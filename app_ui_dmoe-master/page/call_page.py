@@ -17,6 +17,7 @@ class CallPage(BasePage):
     call_add_btn = "textContains:添加通话"
     call_switch_video_btn = "textContains:视频通话"
     call_mute_btn = "textContains:静音"
+    call_merge_btn = "textContains:合并"
     call__speaker_btn = "xpath:(//android.widget.RelativeLayout)[2]"
     call_keyboard_btn = "resourceId:com.android.dialer:id/incall_dialpad"
     # target_number = "xpath:(//android.widget.LinearLayout)[43]"
@@ -75,14 +76,20 @@ class CallPage(BasePage):
 
     def hang_up(self, timeout=10):
         """挂断"""
+        screen_tapped = False
+
         def read_target():
+            nonlocal screen_tapped
             for selector in (self.hangup_btn, self.hangup_videoRingtone_btn):
                 if self.is_element_exist(selector, timeout=0):
                     return {"selector": selector, "states": None}
-            return {
-                "selector": None,
-                "states": [self.get_call_state(slot)["call_state"] for slot in (1, 2)],
-            }
+            states = [self.get_call_state(slot)["call_state"] for slot in (1, 2)]
+            if states != [0, 0] and not screen_tapped:
+                width, height = self.driver.window_size()
+                self.driver.click(width // 2, height // 2)
+                screen_tapped = True
+                logger.info("未找到挂断按钮，已点击屏幕中央显示通话控件")
+            return {"selector": None, "states": states}
 
         target = self.wait_until(
             read_target,
@@ -239,9 +246,15 @@ class CallPage(BasePage):
             raise ValueError("号码格式无效，应包含数字及可选的开头加号")
 
         selector = (
-            "xpath://*[@text and "
-            f"translate(@text, '{ignored}', '')='{normalized}']"
-        )
+    "xpath:("
+    "//*[@resource-id='com.android.dialer:id/name' and "
+    f"translate(@text, '{ignored}', '')='{normalized}']"
+    "/ancestor::*["
+    "@resource-id='com.android.dialer:id/primary_action_view' "
+    "and @clickable='true'"
+    "][1]"
+    ")[1]"
+)
         self.click_element(selector, timeout=timeout)
     def video_dial(self, number, sim_slot):
         if sim_slot not in (1, 2):

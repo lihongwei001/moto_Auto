@@ -156,4 +156,55 @@ def other_call_Action(main_driver):
     with allure.step("挂断电话"):
         call_page.hang_up()
 
-
+def sim1_conf_calls(main_driver,sup_driver,sup2_driver,call_data):
+    call_page = CallPage(main_driver)
+    sup_page = CallPage(sup_driver)
+    sup2_page = CallPage(sup2_driver)
+    data = call_data["SUP_sim1"]
+    data2 = call_data["SUP2_sim1"]
+    with allure.step("DUT_sim1拨打sup电话"):
+        call_page.voice_dial(data["receiver"], sim_slot=1)
+    with allure.step("等待通话"):
+        main_driver.sleep(5)
+    with allure.step("sup接听来电"):
+        sup_page.accept_incoming_call()
+    with allure.step("DUT_sim1添加通话"):
+        call_page.add_call()
+    with allure.step("DUT_sim1拨打sup2电话"):
+        call_page.voice_dial(data2["receiver"], sim_slot=1)
+    with allure.step("等待通话"):
+        main_driver.sleep(5)
+    with allure.step("sup2接听来电"):
+        sup2_page.accept_incoming_call()
+    with allure.step("点击合并按钮"):
+        call_page.click_element(call_page.call_merge_btn)
+    with allure.step("等待3方进入通话状态"):
+        call_page.wait_call_state(sim_slot=1, expected=2)
+        sup_page.wait_call_state(sim_slot=1, expected=2)
+        sup2_page.wait_call_state(sim_slot=1, expected=2)
+def sim2_conf_calls(main_driver,sup_driver,sup2_driver,call_data):
+    call_page = CallPage(main_driver)
+    sup_page = CallPage(sup_driver)
+    sup2_page = CallPage(sup2_driver)
+    data = call_data["SUP_sim1"]
+    data2 = call_data["SUP2_sim1"]
+    with allure.step("DUT_sim2拨打sup电话"):
+        call_page.voice_dial(data["receiver"], sim_slot=2)
+    with allure.step("等待通话"):
+        main_driver.sleep(5)
+    with allure.step("sup接听来电"):
+        sup_page.accept_incoming_call()
+    # with allure.step("DUT_sim2添加通话"):
+    #     call_page.add_call()
+    with allure.step("DUT_sim2拨打sup2电话"):
+        call_page.voice_dial(data2["receiver"], sim_slot=2)
+    with allure.step("等待通话"):
+        main_driver.sleep(5)
+    with allure.step("sup2接听来电"):
+        sup2_page.accept_incoming_call()
+    with allure.step("点击合并按钮"):
+        call_page.click_element(call_page.call_merge_btn)
+    with allure.step("等待3方进入通话状态"):
+        call_page.wait_call_state(sim_slot=2, expected=2)
+        sup_page.wait_call_state(sim_slot=1, expected=2)
+        sup2_page.wait_call_state(sim_slot=1, expected=2)

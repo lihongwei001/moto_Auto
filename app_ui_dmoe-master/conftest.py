@@ -28,8 +28,6 @@ def test_data():
     if not isinstance(data, dict):
         raise ValueError("data.json 顶层必须是 JSON 对象")
     return data
-
-
 @pytest.fixture(scope="session")
 def device_serials(request, test_data):
     serials = {}
