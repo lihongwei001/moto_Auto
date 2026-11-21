@@ -87,18 +87,18 @@ def dial_call(dev, target_phone):
     time.sleep(1.2)
 
     dial_ok = False
-    # 第一层：限定拨号面板内 包含“中国”
-    dial_panel = dev(resourceId="com.android.dialer:id/dialpad_view")
+    # 第一层：限定拨号面板内 包含“sim1”
+    dial_panel = dev(resourceId="com.android.dialer:id/sim_card_0")
     if dial_panel.exists(timeout=1):
-        dial_btn = dial_panel.child(textContains="中国")
+        dial_btn = dev(resourceId="com.android.dialer:id/sim_card_0")
         if dial_btn.exists(timeout=1.2):
             dial_btn.click()
             dial_ok = True
-            print(f"[{dev.serial}] 在拨号面板匹配到含「中国」按钮，执行拨号")
+            print(f"[{dev.serial}] 在拨号面板匹配到sim1按钮，执行拨号")
 
     # 第二层：面板内找不到，全局页面搜索含“中国”按钮兜底
     if not dial_ok:
-        dial_btn_all = dev(textContains="中国")
+        dial_btn_all = dev(resourceId="resourceId:com.android.dialer:id/lable_sim1")
         if dial_btn_all.exists(timeout=1):
             dial_btn_all.click()
             dial_ok = True

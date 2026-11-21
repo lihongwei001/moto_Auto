@@ -69,7 +69,7 @@ def step_test():
     # d(text="WLAN").click()
     # time.sleep(1.5)
     # d(text="使用 WLAN").click()
-    time.sleep(6)
+    time.sleep(10)
 
 
     # 3. 检查网络正常
